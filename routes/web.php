@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\BaseController;
+use App\Http\Controllers\Backend\UserController as BackendUserController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +19,10 @@ Route::get('/logout',[AuthController::class,'logout'])->name('user.logout');
 Route::get('/registration',[UserController::class,'create'])->name('user.registration');
 Route::post('/registration_post',[UserController::class,'store'])->name('user.registration.post');
 
+
+
 Route::get('/',[BaseController::class,'dashboard'])->name('backend.dashboard');
+
+#Backend-user
+Route::get('/user_index',[BackendUserController::class,'index'])->name('user.index');
 
