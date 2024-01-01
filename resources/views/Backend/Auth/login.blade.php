@@ -13,7 +13,7 @@
                 <div class="col-md-7 col-lg-5">
                     <div class="login-wrap p-4 p-md-5">
                         <h1 class="text-center mb-4" style="font-size: xx-large; font-weight: bold;">Please, Login !</h1>
-                        <form action="#" method="POST" class="login-form">
+                        <form action="{{ route('user.login.post') }}" method="POST" class="login-form">
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="email" class="form-control rounded-left" placeholder="Email" required>
@@ -28,7 +28,7 @@
                                 <div class="form-group mt-4">
                                     <span class="text-muted">
                                         Don't have an account?
-                                        <a href="#" class="text-primary">Register</a>
+                                        <a href="{{ route('user.registration') }}" class="text-primary">Register</a>
                                     </span>
                                 </div>
                             </div>
