@@ -23,6 +23,8 @@ Route::post('/registration_post',[UserController::class,'store'])->name('user.re
 
 Route::get('/',[BaseController::class,'dashboard'])->name('backend.dashboard');
 
+
 #Backend-user
-Route::get('/user_index',[BackendUserController::class,'index'])->name('user.index');
+Route::resource('user',BackendUserController::class);
+
 

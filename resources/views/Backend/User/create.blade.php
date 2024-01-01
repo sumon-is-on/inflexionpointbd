@@ -4,19 +4,15 @@
     <h1 class="text-5xl">Add User</h1>
 </div>
 <div class="m-5">
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <form action="#" method="POST" enctype="multipart/form-data" class="w-50">
         @csrf
         @includeIf('Backend.User.fields')
-        <div class=" flex">
-            <div class=" mt-4">
-                <label for="password" class="block mb-2  font-medium text-gray-900 dark:text-white">Password</label>
-                <input type="password" name="password" id="password" value="{{old('password',$user->address)}}">
-            </div>
+        <div class="form-group mt-4">
+            <input type="password" name="password" class="form-control" placeholder="Password" id="password" value="{{ old('password', $user->address) }}">
         </div>
-        <div class="flex mt-5">
-            <a href="{{ route('backend.user.index') }}" type="submit" class="btn btn-warning">cancel</a>
-
-            <button type="submit" class=" btn btn-success">Add</button>
+        <div class="form-group mt-5">
+            <a href="{{ route('user.index') }}" class="btn btn-warning">Cancel</a>
+            <button type="submit" class="btn btn-success ml-2">Add</button>
         </div>
     </form>
 </div>

@@ -16,7 +16,7 @@
             </a>
         </div>
         <div>
-            <a href="#">
+            <a href="{{ route('user.create') }}">
                 <button type="button" class="form-control btn btn-info">User +</button>
             </a>
         </div>

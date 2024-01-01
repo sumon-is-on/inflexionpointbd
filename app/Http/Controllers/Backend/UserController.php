@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
-use App\Models\User;
 
 class UserController extends Controller
 {
@@ -26,5 +26,35 @@ class UserController extends Controller
             $users=User::with('Roles')->paginate();
         }
         return view('Backend.User.index',compact('users','search'));
+    }
+
+
+    public function create(){
+        $user = new User();
+        return view('Backend.User.create',compact('user'));
+    }
+
+
+    public function store(Request $request){
+        //
+    }
+
+
+    public function show(string $id){
+        //
+    }
+
+
+    public function edit(string $id){
+        //
+    }
+
+
+    public function update(Request $request, string $id){
+        //
+    }
+
+    public function destroy(string $id){
+        //
     }
 }
