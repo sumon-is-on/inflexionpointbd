@@ -16,6 +16,7 @@ Route::get('/logout',[AuthController::class,'logout'])->name('user.logout');
 
 # Web-User
 Route::get('/registration',[UserController::class,'create'])->name('user.registration');
+Route::post('/registration_post',[UserController::class,'store'])->name('user.registration.post');
 
 Route::get('/',[BaseController::class,'dashboard'])->name('backend.dashboard');
 

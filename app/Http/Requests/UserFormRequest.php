@@ -16,13 +16,13 @@ class UserFormRequest extends FormRequest
             $rules=[
                 'name'=>'required',
                 'email'=>'required', Rule::unique('users')->ignore($this->input('email')),
-                'contact'=>'required',
+                'phone'=>'required',
             ];
         }else{
             $rules=[
                 'name'=>'required',
                 'email'=>'required|unique:users',
-                'contact'=>'required',
+                'phone'=>'required',
                 'password'=>'required'
             ];
         }

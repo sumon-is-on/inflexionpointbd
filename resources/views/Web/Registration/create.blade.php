@@ -13,7 +13,7 @@
                 <div class="col-md-12 col-lg-5">
                     <div class="login-wrap p-4 p-md-5">
                         <h1 class="text-center mb-4" style="font-size: xx-large; font-weight: bold;">Register Yourself .</h1>
-                        <form action="#" method="POST" class="login-form" enctype="multipart/form-data">
+                        <form action="{{ route('user.registration.post') }}" method="POST" class="login-form" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mt-2">
                                 <input type="text" name="name" class="form-control rounded-left" placeholder="Your Name" required>
@@ -38,8 +38,10 @@
                             </div>
                             <div class="d-flex">
                                 <div class="form-group mt-2 d-flex">
-                                    <button type="submit" class="btn btn-warning rounded submit px-3" style="margin-right: 10px;">Back</button>
-                                    <button type="submit" class="btn btn-success rounded submit px-3">Login</button>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning rounded submit px-3" style="margin-right: 10px;">Back</button>
+                                    </a>
+                                    <button type="submit" class="btn btn-success rounded submit px-3">Submit</button>
                                 </div>
                             </div>
                         </form>

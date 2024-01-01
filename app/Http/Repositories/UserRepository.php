@@ -20,7 +20,7 @@ class UserRepository{
             'image'=>$filename,
             'email'=>$request->email,
             'password'=>bcrypt($request->password),
-            'phone'=>$request->contact,
+            'phone'=>$request->phone,
             'address'=>$request->address
         ]);
     }
