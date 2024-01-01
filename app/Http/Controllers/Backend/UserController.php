@@ -36,7 +36,8 @@ class UserController extends Controller
 
 
     public function store(Request $request){
-        //
+        $this->userRepository->store($request);
+        return to_route('user.index');
     }
 
 

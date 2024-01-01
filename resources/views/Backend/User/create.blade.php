@@ -4,7 +4,7 @@
     <h1 class="text-5xl">Add User</h1>
 </div>
 <div class="m-5">
-    <form action="#" method="POST" enctype="multipart/form-data" class="w-50">
+    <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data" class="w-50">
         @csrf
         @includeIf('Backend.User.fields')
         <div class="form-group mt-4">
