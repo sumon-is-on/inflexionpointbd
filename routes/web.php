@@ -4,6 +4,12 @@ use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\BaseController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login',[AuthController::class,'login'])->name('backend.login');
+
+
+#authLogin
+Route::get('/login',[AuthController::class,'login'])->name('user.login');
+Route::post('/login_post',[AuthController::class,'loginPost'])->name('user.login.post');
+Route::get('/logout',[AuthController::class,'logout'])->name('user.logout');
+
 Route::get('/',[BaseController::class,'dashboard'])->name('backend.dashboard');
 
