@@ -42,20 +42,24 @@ class UserController extends Controller
 
 
     public function show(string $id){
-        //
+
     }
 
 
     public function edit(string $id){
-        //
+        $user = User::find($id);
+        return view('Backend.User.edit',compact('user'));
     }
 
 
     public function update(Request $request, string $id){
-        //
+        $user=User::find($id);
+        $this->userRepository->update($request,$user->id);
+        return to_route('user.index');
     }
 
     public function destroy(string $id){
-        //
+        $user=User::find($id)->delete();
+        return to_route('user.index');
     }
 }

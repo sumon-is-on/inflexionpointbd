@@ -49,15 +49,25 @@
                 <td class="text-uppercase">{{ $user->address }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="#" class="btn btn-outline-primary">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-info">
-                            <i class="fa fa-eye"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-danger">
-                            <i class="fa fa-trash"></i>
-                        </a>
+                        <div>
+                            <a href="{{ route('user.edit',$user->id) }}" class="btn btn-outline-primary">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-outline-info">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete it ?')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </td>
             </tr>
