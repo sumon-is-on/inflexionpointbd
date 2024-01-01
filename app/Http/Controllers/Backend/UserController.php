@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
+use App\Http\Requests\UserFormRequest;
 
 class UserController extends Controller
 {
@@ -35,7 +36,7 @@ class UserController extends Controller
     }
 
 
-    public function store(Request $request){
+    public function store(UserFormRequest $request){
         $this->userRepository->store($request);
         return to_route('user.index');
     }
@@ -53,7 +54,7 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request, string $id){
+    public function update(UserFormRequest $request, string $id){
         $user=User::find($id);
         $this->userRepository->update($request,$user->id);
         return to_route('user.index');

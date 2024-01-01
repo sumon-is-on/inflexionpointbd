@@ -11,6 +11,7 @@
                         <li><a href="#">Dashboard </a></li>
                     </ul>
                 </li>
+                <li><a href="{{ route('user.index') }}"><i class="fas fa-user"></i> User </a></li>
             </ul>
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\BaseController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\UserController as BackendUserController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,7 @@ Route::get('/',[BaseController::class,'dashboard'])->name('backend.dashboard');
 
 #Backend-user
 Route::resource('user',BackendUserController::class);
+#Backend-category
+Route::resource('category',CategoryController::class);
 
 
