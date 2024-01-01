@@ -55,7 +55,7 @@
                             </a>
                         </div>
                         <div>
-                            <a href="#" class="btn btn-outline-info">
+                            <a href="{{ route('user.show', $user->id) }}" class="btn btn-outline-info">
                                 <i class="fa fa-eye"></i>
                             </a>
                         </div>
