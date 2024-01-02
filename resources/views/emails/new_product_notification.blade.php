@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>New Product Notification</title>
+    <title>{{ $subject }}</title>
 </head>
 
 <body>
@@ -11,8 +11,8 @@
     <p>Hello,</p>
 
     <p>We are excited to inform you that a new product has been added:</p>
-    {{--  <p><strong>Name:</strong> {{ $prx  --}}
-    {{--  <p>{{ $message }}</p>  --}}
+    <p><strong>Name:</strong> {{ $product['name'] }}</p>
+    {{-- <p>{{ $message }}</p> --}}
 
     <p>Thank you for being a valued customer!</p>
 </body>

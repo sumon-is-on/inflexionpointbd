@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,9 +20,11 @@ class CheckAdmin
             if (auth()->user()->role_id == 1) {
                 return $next($request);
             } else {
+                Toastr::warning("Only admin has the permission");
                 return redirect()->route('user.login');
             }
         } else {
+            Toastr::warning("Only admin has the permission");
             return redirect()->route('user.login');
         }
     }

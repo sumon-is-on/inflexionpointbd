@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class CategoryController extends Controller
 {
     public function index(){
         $search=request()->query('search');
         if($search){
-            $categories=Category::where('name','like',"%$search%")->paginate(10);
+            $categories=Category::where('name','like',"%$search%")->orderByDesc('id')->paginate(10);
         }else{
-            $categories=Category::paginate(10);
+            $categories=Category::orderByDesc('id')->paginate(10);
         }
         return view('Backend.Category.index',compact('categories','search'));
     }
@@ -34,6 +35,7 @@ class CategoryController extends Controller
             'name'=>$request->name,
             'details'=>$request->details
         ]);
+        Toastr::success('Category Created successfully');
         return to_route('category.index');
     }
 
@@ -60,11 +62,13 @@ class CategoryController extends Controller
 
         ]);
         $category->save();
+        Toastr::success('Category Created successfully');
         return to_route('category.index');
     }
 
     public function destroy(string $id){
         $category=Category::find($id)->delete();
+        Toastr::success('Category deleted successfully');
         return to_route('category.index');
     }
 }

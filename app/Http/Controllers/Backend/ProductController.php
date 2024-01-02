@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Exports\ProductExport;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Exports\ProductExport;
+use App\Imports\ProductImport;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\ProductFormRequest;
 use App\Http\Repositories\ProductRepository;
-use App\Imports\ProductImport;
 
 class ProductController extends Controller
 {
@@ -23,9 +24,11 @@ class ProductController extends Controller
         $search=request()->query('search');
         if($search){
             $products=Product::with('Categories')
-                ->where('name','like',"%$search%")->paginate(10);
+                ->where('name','like',"%$search%")
+                ->orderByDesc('id')
+                ->paginate(10);
         }else{
-            $products=Product::with('Categories')->paginate(10);
+            $products=Product::with('Categories')->orderByDesc('id')->paginate(10);
         }
         return view('Backend.Product.index',compact('products','search'));
     }
@@ -41,6 +44,7 @@ class ProductController extends Controller
 
     public function store(ProductFormRequest $request){
         $this->productRepository->store($request);
+        Toastr::success('Product Created successfully');
         return to_route('product.index');
     }
 
@@ -60,22 +64,27 @@ class ProductController extends Controller
     public function update(Request $request, string $id){
         $product = Product::find($id);
         $this->productRepository->update($request,$product->id);
+        Toastr::success('Product updated successfully');
         return to_route('product.index');
     }
 
 
     public function destroy(string $id){
         $product=Product::find($id)->delete();
+        Toastr::success('Product deleted successfully');
         return to_route('product.index');
     }
 
-    public function export()
-    {
+
+
+    public function export(){
         return Excel::download(new ProductExport, 'products.xlsx');
     }
-    public function import(Request $request)
-    {
+
+
+    public function import(Request $request){
+        Toastr::success('Product has been uploaded');
         Excel::import(new ProductImport, $request->file('file')->store('temp'));
-        return back();
+        return to_route('product.index');
     }
 }

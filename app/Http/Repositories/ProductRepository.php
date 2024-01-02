@@ -24,9 +24,9 @@ class ProductRepository{
             'price'=>$request->price,
             'quantity'=>$request->quantity,
         ]);
-        $users = User::get();
+        $users = User::where('role_id',2)->get();
         foreach ($users as $key => $value) {
-            Mail::to($value->email)->send(new SendNewProductEmail($product,"New product {$product->name} has been created",'New Product Created'));
+            Mail::to($value->email)->send(new SendNewProductEmail($product,"New product has been created","please checkout"));
         }
     }
 

@@ -11,13 +11,13 @@
                 </div>
                 <div class="float-right">
                     <ul>
-                        <li class="header-icon dib"><span class="user-avatar">John <i
+                        <li class="header-icon dib"><span class="user-avatar">{{ auth()->user()->name }} <i
                                     class="ti-angle-down f-s-10"></i></span>
                             <div class="drop-down dropdown-profile">
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li><a href="#"><i class="ti-user"></i> <span>Profile</span></a></li>
-                                        <li><a href="#"><i class="ti-power-off"></i> <span>Logout</span></a></li>
+                                        <li><a href="{{ route('user.logout') }}"><i class="ti-power-off"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>

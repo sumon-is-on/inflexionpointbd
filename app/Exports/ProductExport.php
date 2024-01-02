@@ -10,15 +10,11 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class ProductExport implements FromCollection, WithHeadings
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function collection()
-    {
+    public function collection(){
         return Product::all();
     }
-    public function headings(): array
-    {
+
+    public function headings(): array{
         return [
             'id',
             'name',

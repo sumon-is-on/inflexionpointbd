@@ -1,24 +1,20 @@
 @extends('Backend.master')
 @section('content')
-<div class="row">
-    <h1 class="text-center text-primary">Purchase Product</h1>
+<div class="mt-3">
+    <h1 class=" text-3xl">Category Index</h1>
 </div>
 <div class="mt-5">
-    <div
-        class="table-responsive"
-    >
-        <table
-            class="table"
-        >
+    <div class="table-responsive">
+        <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Available Quantity</th>
-                    <th scope="col">Price</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Available Quantity</th>
+                    <th>Price</th>
                     @if (auth()->user())
-                    <th scope="col">Purchase</th>
+                    <th>Purchase</th>
                     @endif
                 </tr>
             </thead>
@@ -37,7 +33,7 @@
                 @endforeach
             </tbody>
         </table>
+        {!! $products->links() !!}
     </div>
-
 </div>
 @endsection

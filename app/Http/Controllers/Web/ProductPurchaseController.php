@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class ProductPurchaseController extends Controller
 {
     public function index(){
-        $products = Product::with('Categories')->get();
+        $products = Product::with('Categories')->paginate(5);
         return view('Web.Purchase.Purchase',compact('products'));
     }
     public function purchase($id){

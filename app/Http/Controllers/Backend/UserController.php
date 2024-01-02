@@ -22,9 +22,10 @@ class UserController extends Controller
             $users=User::where('name','like',"%$search%")
             ->orWhere('email','like',"%$search%")
             ->orWhere('phone','like',"%$search%")
+            ->orderByDesc('id')
             ->paginate(10);
         }else{
-            $users=User::with('Roles')->paginate(10);
+            $users=User::with('Roles')->orderByDesc('id')->paginate(10);
         }
         return view('Backend.User.index',compact('users','search'));
     }
