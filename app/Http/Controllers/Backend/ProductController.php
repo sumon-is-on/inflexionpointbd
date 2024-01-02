@@ -26,9 +26,9 @@ class ProductController extends Controller
             $products=Product::with('Categories')
                 ->where('name','like',"%$search%")
                 ->orderByDesc('id')
-                ->paginate(10);
+                ->paginate(5);
         }else{
-            $products=Product::with('Categories')->orderByDesc('id')->paginate(10);
+            $products=Product::with('Categories')->orderByDesc('id')->paginate(5);
         }
         return view('Backend.Product.index',compact('products','search'));
     }

@@ -1,10 +1,10 @@
 @extends('Backend.master')
 @section('content')
 <div class="mt-3">
-    <h1 class=" text-3xl">Category Index</h1>
+    <h1 class=" text-3xl">Purchase Product</h1>
 </div>
 <div class="mt-5">
-    <div class="table-responsive">
+    <div>
         <table class="table">
             <thead>
                 <tr>
@@ -33,7 +33,9 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $products->links() !!}
+        <div class="float-right">
+            {!! $products->links() !!}
+        </div>
     </div>
 </div>
 @endsection

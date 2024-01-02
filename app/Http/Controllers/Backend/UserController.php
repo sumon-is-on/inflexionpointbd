@@ -23,9 +23,9 @@ class UserController extends Controller
             ->orWhere('email','like',"%$search%")
             ->orWhere('phone','like',"%$search%")
             ->orderByDesc('id')
-            ->paginate(10);
+            ->paginate(5);
         }else{
-            $users=User::with('Roles')->orderByDesc('id')->paginate(10);
+            $users=User::with('Roles')->orderByDesc('id')->paginate(5);
         }
         return view('Backend.User.index',compact('users','search'));
     }

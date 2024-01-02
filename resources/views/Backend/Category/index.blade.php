@@ -68,6 +68,8 @@
             @endforeach
         </tbody>
     </table>
-    {{ $categories->links() }}
+    <div class="float-right">
+        {{ $categories->links() }}
+    </div>
 </div>
 @endsection

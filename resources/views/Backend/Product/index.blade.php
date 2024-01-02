@@ -29,25 +29,6 @@
 </div>
 
 
-
-{{-- <div class="container mt-5">
-    <form action="{{ route('product.import') }}" method="post" enctype="multipart/form-data">
-        <div class="row">
-            @csrf
-            <div class="col-md-4">
-                <div class="mb-3">
-                    <label for="" class="form-label">Insert a excel file to upload Product</label>
-                    <input type="file" class="form-control" name="file" id="file" aria-describedby="fileHelpId" required/>
-                </div>
-            </div>
-            <div class="col-md-2 mt-4">
-                <button type="submit" class="btn btn-primary form-control"> Import</button>
-            </div>
-        </div>
-    </form>
-
-</div> --}}
-
 <div class="container mt-5">
     <table class="table">
         <thead>
@@ -70,7 +51,7 @@
                     <img src="{{ url('/products/'.$data->image)}}" class="img-fluid rounded-circle" width="35px">
                 </td>
                 <td>{{ $data->Categories->name }}</td>
-                <td class="text-uppercase">{{ $data->price }}</td>
+                <td class="text-uppercase">{{ $data->price }} /-</td>
                 <td class="text-uppercase">{{ $data->quantity }}</td>
                 <td>
                     <div class="btn-group" role="group">
@@ -99,6 +80,8 @@
             @endforeach
         </tbody>
     </table>
-    {!! $products->links() !!}
+    <div class="float-right">
+        {!! $products->links() !!}
+    </div>
 </div>
 @endsection

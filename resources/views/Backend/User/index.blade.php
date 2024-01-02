@@ -73,8 +73,9 @@
             </tr>
             @endforeach
         </tbody>
-
-        {!! $users->links() !!}
+        <div class="float-right">
+            {!! $users->links() !!}
+        </div>
     </table>
 </div>
 
