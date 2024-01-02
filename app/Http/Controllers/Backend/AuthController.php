@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,15 +21,18 @@ class AuthController extends Controller
         ]);
         $credentials=$request->only('email','password');
         if(Auth::attempt($credentials)){
+            Toastr::success('Login successfull');
             return redirect()->route('backend.dashboard');
         }
         else{
+            Toastr::warning('Invallid credentials');
             return redirect()->back();
         }
     }
 
     public function logout(){
         Auth::logout();
+        Toastr::success('Logout successfull');
         return redirect()->route('user.login');
     }
 }

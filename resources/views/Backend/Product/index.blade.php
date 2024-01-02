@@ -1,10 +1,10 @@
 @extends('Backend.master')
 @section('content')
-<div class="mt-3">
+<div class="container mt-3">
   <h1 class=" text-3xl">Product Index</h1>
 </div>
 
-<div class="flex mt-4">
+<div class=" container flex mt-4">
     <form action="{{ route('product.index') }}" method="GET" class="d-flex align-items-center">
         @csrf
         <div class="mr-2">
@@ -20,45 +20,33 @@
                 <button type="button" class="form-control btn btn-info">Product +</button>
             </a>
         </div>
-        <div>
+        <div class="ml-2">
             <a href="{{ route('product.export') }}">
-                <button type="button" class="form-control btn btn-info">Excel Download</button>
+                <button type="button" class="form-control btn btn-success">Excel Download</button>
             </a>
         </div>
     </form>
 </div>
-<div class="container">
+
+
+
+{{-- <div class="container mt-5">
     <form action="{{ route('product.import') }}" method="post" enctype="multipart/form-data">
         <div class="row">
             @csrf
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="" class="form-label">Choose file</label>
-                    <input
-                        type="file"
-                        class="form-control"
-                        name="file"
-                        id="file"
-                        placeholder=""
-                        aria-describedby="fileHelpId"
-                        required
-                    />
+                    <label for="" class="form-label">Insert a excel file to upload Product</label>
+                    <input type="file" class="form-control" name="file" id="file" aria-describedby="fileHelpId" required/>
                 </div>
             </div>
-            <div class="col-md-2">
-                    <button
-                        type="submit"
-                        name=""
-                        id=""
-                        class="btn btn-primary"
-                    >
-                        Import
-                    </button>
+            <div class="col-md-2 mt-4">
+                <button type="submit" class="btn btn-primary form-control"> Import</button>
             </div>
         </div>
-        </form>
+    </form>
 
-</div>
+</div> --}}
 
 <div class="container mt-5">
     <table class="table">
