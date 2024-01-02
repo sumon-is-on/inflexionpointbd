@@ -12,44 +12,26 @@ use Illuminate\Queue\SerializesModels;
 class SendNewProductEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    protected $subject;
-    protected $message;
     /**
      * Create a new message instance.
      */
-    public function __construct($subject,$message)
-    {
+    public $product;
+    public $subject;
+    public $message;
+    public function __construct(
+        $product,
+        $subject,
+        $message
+    ) {
+        $this->product = $product;
         $this->subject = $subject;
         $this->message = $message;
     }
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: $this->message,
-        );
-    }
 
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            // $this->message;
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
+        return $this->subject($this->subject)
+            ->view('emails.new_product_notification'); // Blade template for your email content
     }
 }

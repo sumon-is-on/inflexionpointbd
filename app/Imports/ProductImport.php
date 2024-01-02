@@ -23,10 +23,8 @@ class ProductImport implements ToModel, WithHeadingRow
             'quantity'    => $row['quantity'],
         ]);
         $users = User::get();
-        $subject = "New Product Added: {$product->name}";
-        $message = "Check out our new product: {$product->name}. Price: {$product->price}";
         foreach ($users as $key => $value) {
-            Mail::to($value->email)->send(new SendNewProductEmail($subject, $message));
+            Mail::to($value->email)->send(new SendNewProductEmail($product, "New product {$product->name} has been created", 'New Product Created'));
         }
         return $product;
     }
