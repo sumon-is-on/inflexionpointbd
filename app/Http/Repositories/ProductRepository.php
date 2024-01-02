@@ -1,8 +1,12 @@
 <?php
 namespace App\Http\Repositories;
 
+use App\Models\User;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Mail\SendNewProductEmail;
+use App\Mail\NewProductNotification;
+use Illuminate\Support\Facades\Mail;
 
 class ProductRepository{
 
@@ -13,13 +17,19 @@ class ProductRepository{
             $filename=date('Ymdhis').'.'.$image->getClientOriginalExtension();
             $image->storeAs('/products',$filename);
         }
-        Product::create([
+        $product = Product::create([
             'name'=>$request->name,
             'category_id'=>$request->category_id,
             'image'=>$filename,
             'price'=>$request->price,
             'quantity'=>$request->quantity,
         ]);
+        $users = User::get();
+        $subject = "New Product Added: {$product->name}";
+        $message = "Check out our new product: {$product->name}. Price: {$product->price}";
+        foreach ($users as $key => $value) {
+            Mail::to($value->email)->send(new SendNewProductEmail($subject, $message));
+        }
     }
 
 

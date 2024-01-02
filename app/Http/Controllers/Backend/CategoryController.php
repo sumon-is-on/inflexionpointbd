@@ -11,9 +11,9 @@ class CategoryController extends Controller
     public function index(){
         $search=request()->query('search');
         if($search){
-            $categories=Category::where('name','like',"%$search%")->get();
+            $categories=Category::where('name','like',"%$search%")->paginate(10);
         }else{
-            $categories=Category::paginate();
+            $categories=Category::paginate(10);
         }
         return view('Backend.Category.index',compact('categories','search'));
     }
@@ -27,7 +27,8 @@ class CategoryController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name'=>'required|unique:categories,name'
+            'name'=>'required|unique:categories,name',
+            'details' => 'required|max:255'
         ]);
         Category::create([
             'name'=>$request->name,
@@ -49,7 +50,8 @@ class CategoryController extends Controller
 
     public function update(Request $request, string $id){
         $request->validate([
-            'name'=>'required'
+            'name' => 'required|unique:categories,name|max:255',
+            'details' => 'required|max:255'
         ]);
         $category = Category::find($id);
         $category->update([

@@ -20,7 +20,44 @@
                 <button type="button" class="form-control btn btn-info">Product +</button>
             </a>
         </div>
+        <div>
+            <a href="{{ route('product.export') }}">
+                <button type="button" class="form-control btn btn-info">Excel Download</button>
+            </a>
+        </div>
     </form>
+</div>
+<div class="container">
+    <form action="{{ route('product.import') }}" method="post" enctype="multipart/form-data">
+        <div class="row">
+            @csrf
+            <div class="col-md-8">
+                <div class="mb-3">
+                    <label for="" class="form-label">Choose file</label>
+                    <input
+                        type="file"
+                        class="form-control"
+                        name="file"
+                        id="file"
+                        placeholder=""
+                        aria-describedby="fileHelpId"
+                        required
+                    />
+                </div>
+            </div>
+            <div class="col-md-2">
+                    <button
+                        type="submit"
+                        name=""
+                        id=""
+                        class="btn btn-primary"
+                    >
+                        Import
+                    </button>
+            </div>
+        </div>
+        </form>
+
 </div>
 
 <div class="container mt-5">
@@ -74,5 +111,6 @@
             @endforeach
         </tbody>
     </table>
+    {!! $products->links() !!}
 </div>
 @endsection
